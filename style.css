@@ -1,0 +1,9 @@
+ul{
+    list-style: none;
+}
+.criticalmiss {
+    background-color: blue;
+}
+.criticalhit {
+    background-color: red;
+}
