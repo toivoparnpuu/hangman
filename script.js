@@ -1,24 +1,3 @@
-// class
-
-class Dice {
-    #result = 0;
-    constructor(diceNumber) {
-        this.#roll(diceNumber);
-    }
-    #roll(sides) {
-        let randomNr = 0;
-        if (sides == 10) {
-            this.#result = (Math.floor(Math.random() * sides)) * 10;
-        } else {
-            this.#result = Math.floor(Math.random() * sides) + 1;
-        }
-        
-    }
-    get diceResult() {
-        return this.#result;
-    }
-} // class Dice
-
 const selectors = {
     resetButton: '.js-reset-btn',
     rollD20: '.js-d20-btn',
@@ -31,6 +10,8 @@ const selectors = {
 const wordlist = ['kalamees', 'kartul', 'keevitaja', 'ventilaator', 'arvutimäng', 'ristsõna', 'aabits', 'karburaator', 'juhtplokk', 'raudbetoon', 'ilmajaam', 'kanala'];
 let = orgWord = [];
 let = word = [];
+let = d20result = 0;
+let = dxresult = 0;
 const resetButton = document.querySelector(selectors.resetButton);
 const charButton = document.querySelector(selectors.charButton);
 const rollD20 = document.querySelector(selectors.rollD20);
@@ -45,7 +26,6 @@ resetButton.addEventListener("click", function () {
 });
 
 rollD20.addEventListener("click", function () {
-    
     clickOnRollDice(20);
 });
 
@@ -58,20 +38,25 @@ window.addEventListener("load", function () {
 });
 
 // functions
-function clickOnRollDice(diceValue) {
-    const myDice = new Dice(diceValue);
+function clickOnRollDice(sides) {
+    if (sides == 10) {
+        dxresult = (Math.floor(Math.random() * sides)) * 10;
+        displayResults(dxresult);
+    } else {
+        d20result = Math.floor(Math.random() * sides) + 1;
+        displayResults(d20result);
+    }
     
-    displayResults(myDice.diceResult);
 
 }
 function choosWord(){
-    word = wordlist[Math.floor(Math.random() * wordlist.length)].split('');
-    orgWord = word;
-    displayResults('arvatav sõna ' + word.join(''));
-    displayWord();
+    orgWord = wordlist[Math.floor(Math.random() * wordlist.length)].split('');
+    displayResults('debug: arvatav sõna: ' + orgWord.join(''));
 
 }
-
+function prepWord(myword, d20, dx){
+    
+}
 function resetInputAndLog() {
     input.value = "";
     while (writeout.firstChild) {
