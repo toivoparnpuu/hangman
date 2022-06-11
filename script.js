@@ -116,6 +116,7 @@ function displayLives() {
         charButton.disable = true;
         livesOutput.innerHTML = lives;
         window.alert('Mäng läbi!');
+        charButton.disabled = true;
 
     } else {
         livesOutput.innerHTML = lives;
