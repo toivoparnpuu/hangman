@@ -27,10 +27,13 @@ resetButton.addEventListener("click", function () {
 
 rollD20.addEventListener("click", function () {
     clickOnRollDice(20);
+    rollD20.disabled = true;
 });
 
 rollD90.addEventListener("click", function () {
     clickOnRollDice(10);
+    rollD90.disabled = true;
+    prepWord();
 });
 
 window.addEventListener("load", function () {
@@ -41,21 +44,31 @@ window.addEventListener("load", function () {
 function clickOnRollDice(sides) {
     if (sides == 10) {
         dxresult = (Math.floor(Math.random() * sides)) * 10;
-        displayResults(dxresult);
+        displayResults(`D% tulemus: ${dxresult}`);
     } else {
         d20result = Math.floor(Math.random() * sides) + 1;
-        displayResults(d20result);
+        displayResults(`D20 tulemus: ${d20result}`);
     }
-    
-
 }
 function choosWord(){
     orgWord = wordlist[Math.floor(Math.random() * wordlist.length)].split('');
     displayResults('debug: arvatav sõna: ' + orgWord.join(''));
 
 }
-function prepWord(myword, d20, dx){
-    
+function prepWord(){
+    let openSymbols = Math.floor(orgWord.length * ((dxresult /100) / 2));
+    displayResults('avatavad sümbolid on ' + openSymbols);
+    orgWord.forEach(element => {
+        if (openSymbols > 0 && Boolean(Math.round(Math.random()))) {
+            openSymbols = openSymbols -1;
+            word.push(element);
+        } else {
+            word.push('_');
+            console.log('loeme sõnu');    
+        }   
+    });
+
+    displayWord();
 }
 function resetInputAndLog() {
     input.value = "";
@@ -69,6 +82,7 @@ function displayResults(textRow) {
     li.appendChild(document.createTextNode(textRow));
     writeout.appendChild(li);
 }
+
 function displayWord(){
     wordOutput.innerHTML = word.join('');
 }
