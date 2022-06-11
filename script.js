@@ -93,7 +93,7 @@ function checkChar(userChar) {
 }
 function choosWord() {
     orgWord = wordlist[Math.floor(Math.random() * wordlist.length)].split('');
-    displayResults('debug: arvatav sõna: ' + orgWord.join(''));
+    //displayResults('debug: arvatav sõna: ' + orgWord.join(''));
 }
 
 function prepWord() {
